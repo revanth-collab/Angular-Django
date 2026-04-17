@@ -1,0 +1,45 @@
+<div class="container">
+
+    <div class="form-card">
+        <h2>Create New Prompt</h2>
+
+        <form [formGroup]="form" (ngSubmit)="submit()">
+
+            <!-- Title -->
+            <div class="form-group">
+                <label>Title</label>
+                <input type="text" formControlName="title" placeholder="Enter prompt title" />
+
+                <small *ngIf="form.controls.title.touched && form.controls.title.invalid">
+                    Minimum 3 characters required
+                </small>
+            </div>
+
+            <!-- Content -->
+            <div class="form-group">
+                <label>Content</label>
+                <textarea formControlName="content" rows="4" placeholder="Describe your AI prompt..."></textarea>
+
+                <small *ngIf="form.controls.content.touched && form.controls.content.invalid">
+                    Minimum 20 characters required
+                </small>
+            </div>
+
+            <!-- Complexity -->
+            <div class="form-group">
+                <label>Complexity (1–10)</label>
+                <input type="number" formControlName="complexity" min="1" max="10" />
+            </div>
+
+            <!-- Button -->
+            <button class="btn-primary" type="submit" [disabled]="form.invalid || loading">
+                {{ loading ? 'Creating...' : 'Create Prompt' }}
+            </button>
+
+        </form>
+        <div class="toast" *ngIf="showToast">
+            {{ toastMessage }}
+        </div>
+    </div>
+
+</div>

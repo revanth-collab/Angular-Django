@@ -1,0 +1,18 @@
+<h2>All Prompts</h2>
+
+<div *ngIf="prompts.length === 0">
+    No prompts available
+</div>
+
+<div *ngFor="let p of prompts" class="card">
+
+    <h3>{{ p.title }}</h3>
+    <p>{{ p.content }}</p>
+
+    <p><b>Complexity:</b> {{ p.complexity }}</p>
+
+    <a [routerLink]="['/prompts', p.id]" class="btn">
+        View Details
+    </a>
+
+</div>
